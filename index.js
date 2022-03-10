@@ -30,30 +30,25 @@ mongoose
           cuisine: "chips",  
           level: "Easy Peasy",   
         })
-        console.log(newRecipes.title);
 
        return newRecipes.save()
     
   }).then(() => {
 
-    Recipe.insertMany(data)
-    // console.log(title);
-
+   return  Recipe.insertMany(data)
   }).then(() => {
 
 
-    const updateDuration = Recipe.findOneAndUpdate({ title:"Rigatoni alla Genovese"},{ duration:100 })
-
-    // console.log(updateDuration);
+    return Recipe.findOneAndUpdate({ title:"Rigatoni alla Genovese"}, { duration:100 })
   }).then(() => {
 
-    console.log(Recipe);
 
-    const remove = Recipe.deleteOne({title: "Carrot Cake"});
-    console.log(Recipe);
+    return Recipe.findOneAndDelete({ title: "Carrot Cake" });
 
-    // Pokemon.deleteOne({ name: "Bulbasaur" });
-
+  }).then(() => {
+    
+    console.log("Deleted");
+    mongoose.connection.close();
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
