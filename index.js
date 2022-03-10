@@ -16,7 +16,44 @@ mongoose
     return Recipe.deleteMany()
   })
   .then(() => {
+  
     // Run your code here, after you have insured that the connection was made
+
+    // const newRecipes = Recipe.create({ title: 'Food' });
+
+    // console.log(Recipe.title);
+
+
+    const newRecipes = new Recipe({
+
+          title: "new Food",
+          cuisine: "chips",  
+          level: "Easy Peasy",   
+        })
+        console.log(newRecipes.title);
+
+       return newRecipes.save()
+    
+  }).then(() => {
+
+    Recipe.insertMany(data)
+    // console.log(title);
+
+  }).then(() => {
+
+
+    const updateDuration = Recipe.findOneAndUpdate({ title:"Rigatoni alla Genovese"},{ duration:100 })
+
+    // console.log(updateDuration);
+  }).then(() => {
+
+    console.log(Recipe);
+
+    const remove = Recipe.deleteOne({title: "Carrot Cake"});
+    console.log(Recipe);
+
+    // Pokemon.deleteOne({ name: "Bulbasaur" });
+
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
